@@ -2,7 +2,7 @@
 	<div class="row">
 		<div class="col-md-3">
 			<?php 
-			include "./module/side-bar.php";
+				_side_bar();
 			?>
 		</div>
 		<div class="col-md-9">

@@ -23,14 +23,14 @@
 		<div class="form-group">
 			<label for="phone">Nhập Mật khẩu cũ:</label>
 			<input type="password"  class="form-control" name="phone" style="margin-bottom: 10px;">
-		
+
 
 			<label for="phone">Nhập Mật khẩu mới:</label>
 			<input type="password"  class="form-control" name="phone" style="margin-bottom: 10px;">
-		
+
 			<label for="phone">Xác nhận Mật khẩu mới:</label>
 			<input type="password"  class="form-control" name="phone" style="margin-bottom: 10px;">
-		
+
 			<button type="button" class="btn btn-lg btn-primary navbar-right" style="margin: 10px;">Lưu thay đổi</button>
 		</div>
 	</div>	

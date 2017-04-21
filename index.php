@@ -1,3 +1,8 @@
+<?php 
+include "./function.php";
+include "./config.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +12,7 @@
 	<!-- Bootstrap -->
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="./css/bootstrap.min.css">
+	<link rel="stylesheet" href="./css/custom-style.css">
 
 	<!-- jQuery library -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -14,13 +20,13 @@
 	<!-- Latest compiled JavaScript -->
 	<script src="./js/bootstrap.min.js"></script>
 </head>
-<body>
+<body  onload="<?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php') echo 'myFunction()'; ?>">
 	<?php 
-	// Top 
-	include "./top.php";
+	// Call to top.php
+	_top();
 
-	// Header
-	include "./header.php";
+	// Call to header.php
+	_header();
 
 	// Content
 	if (!empty($_GET["v"])){
@@ -39,7 +45,7 @@
 	
 
 	// Footer
-	include "./footer.php";
+	_footer();
 	?>
 </body>
 </html>
