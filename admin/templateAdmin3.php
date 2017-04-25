@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>ad-min</title>
-	<link rel="stylesheet" type="text/css" href="styleeee.css"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<style type="text/css">
 		.vien{
 
@@ -22,8 +22,15 @@
 		height: 1000px;
 
 		}
-		
-
+		#showuser{
+			display: block;
+			margin-top: 80px;
+			text-align: center;
+			color: #ffffff;
+		}
+#box2{
+	margin-left: 620px;
+	}
 
 	</style>
 <meta charset="utf-8">
@@ -34,8 +41,7 @@
   <?php
   	$num;
   	function selectData(){
-  		$conn=mysql_connect('localhost','root','');
-  		mysql_select_db('qlsach',$conn);
+  		include('connectsql.php');
   		$sql = "select*from thanhvien";
   		$result = mysql_query($sql);
   		$num = mysql_num_rows($result);
@@ -50,16 +56,44 @@
   		}
   		$str.= "</table>";
   		$num = mysql_num_rows($result);
-  		$str.="So thanh vien la: ";
-  		$str .=$num;
+  		$str.="Số thành viên là: ";
+  		$str .="<strong>$num</strong>";
   		return $str;
+
+
+  		
+
   }
+
   ?>
+ <?php
+ 	//XOa thanh vien
+ 	$notice = "";
+ 	if(isset($_REQUEST['txtacount'])){
+ 	include("connectsql.php");	
+ 		mysql_query("delete from thanhvien where HOTEN ='".$_REQUEST['txtacount']."'");
+ 	include('closesql.php');
+ 		$notice = "<div class=\"alert alert-info\">
+  						<strong> DELETE SUCCESSFULLY</strong>
+						</div>";
+ 	}
+
+  ?>
+<?php
+//signout
+if(isset($_REQUEST["signout"])){
+	if($_REQUEST["signout"] === "true"){
+        setcookie("flag_sign_in","false");
+        header('Location: formLogin.php');
+}
+}
+
+?>
 </head>
 <body>
 <div class="vien" id="container">
 	<div class="vien" id="sidebar">
-		<img src="FF.png">
+		<img src="image/FF.png">
 
 	</div>
 	<div class="vien" id="menu">
@@ -67,11 +101,18 @@
 		<ul>
 			<li><a href="#"> Dashboard </a></li>
 			<li><a href="templateAdmin.php"> Quản lí tài khoản</a></li>
-			<li><a href="#"> Quản lí thành viên</a></li>
+			<li><a href="templateAdmin3.php"> Quản lí thành viên</a></li>
 			<li><a href="templateAdmin2.php"> Quản lí sách</a></li>
 			<li><a href="#"> Quản lí Đơn hàng</a></li>
 			<li><a href="#"> Quản lí giao dịch</a></li>
 		</ul>
+		<div  id = "showuser">
+		<form>
+			<p><?php if(isset($_COOKIE['username'])) echo "<b> Xin Chào <br>".$_COOKIE['username']."</b>" ;?> </p>
+			<input type="hidden" name="signout" value="true">
+			<button type="submit" class="btn btn-primary btn-sm">Đăng xuất</button>
+		</form>
+		</div>
 
 	</div>
 	<div class="vien" id="content">
@@ -82,10 +123,10 @@
 			<div id="box32">
 				
 				<label for="pwd">Xóa Acount: </label>
-				<form action="processXoaAcount.php" method="POST">
+				<form>
 					<table>
 					<tr>
-						<td><input type="text" name="txtacount" class="form-control" id="pwd" placeholder="Enter user name muốn xóa" size="100px">
+						<td><input type="text" name="txtacount" class="form-control" id="pwd" placeholder="Enter Acount muốn xóa" size="100px">
 						</td>
 						<td><button type="submit" class="btn btn-default">Xóa</button></td>
 					</tr>
@@ -93,6 +134,7 @@
 
 				</form>
 
+				<?php if(isset($notice)) echo $notice;?>
 			</div>
 
 			</div>

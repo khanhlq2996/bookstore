@@ -68,7 +68,7 @@ a:hover, a:visited{
 }
 
 #menu ul li:hover{
-	background-color: #c78888;
+background-color: #c78888;
 }
 #box1{
 	background-color: #ffffff;
@@ -81,8 +81,7 @@ a:hover, a:visited{
 	width: 520px;
 	height: 210px;
 	border: 1px dashed #ccc5c5;
-}
-*{
+}*{
 	box-sizing:  border-box;
 	-moz-box-sizing: border-box;
 	-webkit-box-sizing: border-box;
@@ -152,7 +151,7 @@ a:hover, a:visited{
 }
 
 #menu ul li:hover{
-	background-color: #c78888;
+background-color: #c78888;
 }
 #box1{
 	background-color: #ffffff;
@@ -165,7 +164,7 @@ a:hover, a:visited{
 	width: 410px;
 	height: 410px;
 	border: 1px dashed #ccc5c5;
-	margin-left: 640px;
+	margin-left: 740px;
 	margin-top: -410px;
 }
 
@@ -179,22 +178,8 @@ a:hover, a:visited{
 	margin-top: 100px;
 	border: 1px dashed #ccc5c5;	
 }
-.vien{
 
-}
-#sidebar img{
-	float: right;
-	margin-top: -20px;
-	width: 170px;
-	height: 60px;
-}
-#menu{
-	padding-top: 150px;
-}
-#content{
-	padding: 1em ;
-	background-color: #f1f1f1;
-	height: 100%;
-
+#menu a{
+	margin-bottom: : 100px; 
 }
 

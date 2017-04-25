@@ -1,8 +1,9 @@
+ 
 <!DOCTYPE html>
 <html>
 <head>
 	<title>ad-min</title>
-	<link rel="stylesheet" type="text/css" href="styleeee.css"/>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
 	<style type="text/css">
 		.vien{
 
@@ -19,12 +20,18 @@
 		#content{
 		padding: 1em ;
 		background-color: #f1f1f1;
-		height: auto;
+		height: 1000px;
 
 		}
-		
-
-
+		#showuser{
+			display: block;
+			margin-top: 80px;
+			text-align: center;
+			color: #ffffff;
+		}
+#box2{
+	margin-left: 620px;
+	}
 	</style>
 <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -32,11 +39,60 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   
+   <?php
+if(isset($_SERVER['REQUEST_METHOD'])){
+	if($_SERVER['REQUEST_METHOD'] ==="POST"){
+		$tensach = $_POST['txttensach'];
+		$loaisach = $_POST['txtloaisach'];
+		$tacgia = $_POST['txttacgia'];
+		$nxb = $_POST['txtnxb'];
+		$giasach = $_POST['txtgiasach'];
+		$giamgia = $_POST['txtgiamgia'];
+		$lka = $_POST['txtlka'];
+		$created = $_POST['txtcreated'];
+		$mota = $_POST['txtmota'];
+		$notice ="";
+		include('connectsql.php');
+		$sql = "insert into sach values('null','";
+		$sql.= $tensach."','".$loaisach."', '".$giasach."','".$tacgia."','".$nxb."','".$mota."','".$giamgia."','".$lka."','".$created."')";
+
+		$flag = true;
+		if($tensach ==="" || $loaisach ==="" || $tacgia ==="" || $nxb ==="" || $giamgia === "" || $lka ==="" || $created ===""){
+		  $flag = false;
+		  $notice = "<div class=\"alert alert-success\">
+                   <strong>Please!</strong> Enter fills of fields  !!!
+                   </div>";
+		}
+		if($flag == true){
+		  $result = mysql_query($sql);
+		  $notice = "<div class=\"alert alert-success\">
+                   <strong>Add book successfull </strong>
+                   </div>"; 
+
+		 
+		}
+		
+		include("closesql.php");
+
+	}
+}
+
+?>
+<?php
+//signout
+if(isset($_REQUEST["signout"])){
+	if($_REQUEST["signout"] === "true"){
+        setcookie("sign_in_flg","false");
+        header('Location: formLogin.php');
+}
+}
+
+?>
 </head>
 <body>
 <div class="vien" id="container">
 	<div class="vien" id="sidebar">
-		<img src="FF.png">
+		<img src="image/FF.png">
 
 	</div>
 	<div class="vien" id="menu">
@@ -49,13 +105,19 @@
 			<li><a href="#"> Quản lí Đơn hàng</a></li>
 			<li><a href="#"> Quản lí giao dịch</a></li>
 		</ul>
+		<div  id = "showuser">
+		<form>
+			<p><?php if(isset($_COOKIE['username'])) echo "<b> Xin Chào <br>".$_COOKIE['username']."</b>" ;?> </p>
+			<input type="hidden" name="signout" value="true">
+			<button type="submit" class="btn btn-primary btn-sm">Đăng xuất</button>
+		</form>
+		</div>
 
 	</div>
-
 	<div class="vien" id="content">
 		<div id="box21">
 		<h1><strong>Form thêm Sách</strong></h1>
-		<form method="post" action="processAddbooks.php">
+		<form method="post" action="templateAdmin2.php">
    		 <div class="form-group">
       		<label for="email">Tên Sách:</label>
      		 <input type="text" name="txttensach" class="form-control" id="email" placeholder="Enter tên sách">
@@ -86,7 +148,8 @@
     	</div>
     	<div class="form-group">
       		<label for="pwd">Liên kết ảnh:</label>
-      		<input type="text" name="txtlka" class="form-control" id="pwd" placeholder="Enter liên kết ảnh">
+      		<input type="text" name="txtlka" class="form-control" id="pwd" value="<?php if(isset($_COOKIE['imagelink'])) echo $_COOKIE['imagelink']?>" placeholder="Enter liên kết ảnh">
+      		<a style="float: right;" href="upfile.php" class="btn btn-info" role="button">Upload photo</a>
     	</div>
     	<div class="form-group">
       		<label for="pwd">Ngày thêm sách:</label>
@@ -99,6 +162,7 @@
     		<button type="submit" class="btn btn-default">Thêm Sách</button>
   		</form>
 
+  		<?php if(isset($notice)) echo "<i> $notice</i>"?>
 		</div>
 		<div id="box22">
 			
@@ -107,8 +171,5 @@
 		<div id="box23"></div>
 
 	</div>
-
-
-</div>
 </body>
 </html>
