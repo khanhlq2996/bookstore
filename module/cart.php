@@ -17,7 +17,11 @@
 			<td><img src="https://www.fahasa.com/media/catalog/product/cache/1/small_image/270x364/9df78eab33525d08d6e5fb8d27136e95/8/9/8935246906361.jpg" width="150px;"></td>
 			<td><p>Bí mật người DO THÁI</p></td>
 			<td>120000 vnđ</td>
-			<td class="text-center"> <button type="button" class="glyphicon glyphicon-minus btn"></button>&nbsp;&nbsp; 1 &nbsp;&nbsp;<button type="button" class="glyphicon glyphicon-plus btn"></button></td>
+			<td class="text-center"> 
+				<button type="button" class="glyphicon glyphicon-minus btn" onclick="pre()"></button>
+					<span id="num"> 1 </span>
+				<button type="button" class="glyphicon glyphicon-plus btn" onclick="plus()"></button>
+			</td>
 			<td>120000 vnđ</td>
 			<td class="text-center"> <button type="button" class="glyphicon glyphicon-refresh btn"></button>&nbsp;&nbsp;<button type="button" class="glyphicon glyphicon-remove btn"></button></td>
 		</tr>
@@ -64,3 +68,17 @@
 		<button type="button" class="btn btn-primary" style="margin-bottom: 30px;">Thanh toán</button>
 	</div>
 </div>
+
+<script type="text/javascript">
+	function pre(){
+		var num = +document.getElementById("num").innerHTML;
+		num--;
+		document.getElementById("num").innerHTML = num;
+	}
+
+	function plus(){
+		var num = +document.getElementById("num").innerHTML;
+		num++;
+		document.getElementById("num").innerHTML = num;
+	}
+</script>

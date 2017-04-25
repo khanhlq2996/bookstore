@@ -2,7 +2,7 @@
 include("../function.php");
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$email_user = $_POST['email'];
-	$pwd = $_POST['password'];
+	$pwd = md5($_POST['password']);
 	include "../config.php";
 	session_start();
 

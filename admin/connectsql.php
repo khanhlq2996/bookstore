@@ -1,5 +1,5 @@
 <?php
 	$conn = mysql_connect('localhost', 'root','');
-	mysql_select_db('qlsach', $conn);
+	mysql_select_db('bookstore', $conn);
 
 ?>

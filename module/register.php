@@ -3,7 +3,7 @@ $noti = "";
 if($_SERVER["REQUEST_METHOD"] == "POST") {
 	$name = $_POST['name'];
 	$email = $_POST['email'];
-	$pwd = $_POST['password'];
+	$pwd = md5($_POST['password']);
 
 	if ($name == '' || $email == '' || $pwd == '') {
 		$noti = "<div class='alert alert-danger'>
@@ -20,7 +20,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			This email has been used. Please try another</div>";
 		} else {
 			$sql = "INSERT INTO thanhvien (HOTEN, PASS, EMAIL, CREATED)
-			VALUE ('". $_POST['name'] ."', '". $_POST['password'] ."', '". $_POST['email'] ."', '". date('Y-m-d') ."')";
+			VALUE ('". $name ."', '". $pwd ."', '". $email ."', '". date('Y-m-d') ."')";
 			if ($con->query($sql) === TRUE) {
 				$noti = "<div class='alert alert-success'>
 				Sign Up successfully, Login <a href='/index.php?v=page&id=2'>Click Here</a></div>";
