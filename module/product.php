@@ -1,7 +1,7 @@
 <div class="<?php echo $col; ?>">
-	<div class="thumbnail">
+	<div class="thumbnail2">
 		<a href="index.php?v=product">
-			<img src="https://www.fahasa.com/media/catalog/product/cache/1/small_image/270x364/9df78eab33525d08d6e5fb8d27136e95/8/9/8935246906361.jpg" alt="Lights" style="width:100%;">
+			<img src="/images/8935246906361.jpg" alt="Lights" style="width:100%;">
 		</a>
 
 		

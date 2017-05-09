@@ -50,3 +50,13 @@
 	background-color: #4CAF50;
 	color: #ffffff;
 }
+
+div.thumbnail2 {
+	border-radius: 0px;
+	display: block;
+	padding: 4px;
+	margin-bottom: 20px;
+	line-height: 1.42857143;
+	background-color: #fff;
+	border: 1px solid #ddd;
+}

@@ -16,13 +16,13 @@
 		<tr>
 			<td><img src="https://www.fahasa.com/media/catalog/product/cache/1/small_image/270x364/9df78eab33525d08d6e5fb8d27136e95/8/9/8935246906361.jpg" width="150px;"></td>
 			<td><p>Bí mật người DO THÁI</p></td>
-			<td>120000 vnđ</td>
+			<td id="price">120000</td>
 			<td class="text-center"> 
-				<button type="button" class="glyphicon glyphicon-minus btn" onclick="pre()"></button>
-					<span id="num"> 1 </span>
+				<button type="button" class="glyphicon glyphicon-minus btn" onclick="pre()" id="btn-mi"></button>
+				<span id="num"> 1 </span>
 				<button type="button" class="glyphicon glyphicon-plus btn" onclick="plus()"></button>
 			</td>
-			<td>120000 vnđ</td>
+			<td id="total">120000</td>
 			<td class="text-center"> <button type="button" class="glyphicon glyphicon-refresh btn"></button>&nbsp;&nbsp;<button type="button" class="glyphicon glyphicon-remove btn"></button></td>
 		</tr>
 
@@ -69,16 +69,31 @@
 	</div>
 </div>
 
+
 <script type="text/javascript">
 	function pre(){
 		var num = +document.getElementById("num").innerHTML;
+		if(num == 1) {
+			document.getElementById("pre").disabled = true;
+		}
 		num--;
 		document.getElementById("num").innerHTML = num;
+		total(num);
 	}
 
 	function plus(){
 		var num = +document.getElementById("num").innerHTML;
+		if (num == 0) {			
+			document.getElementById("pre").disabled = false;
+		}
 		num++;
 		document.getElementById("num").innerHTML = num;
+		total(num);
+	}
+
+	function total(num){
+		var price = +document.getElementById("price").innerHTML;
+
+		document.getElementById("total").innerHTML = (num * price);
 	}
 </script>

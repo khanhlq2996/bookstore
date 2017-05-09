@@ -1,7 +1,7 @@
 <div class="container-fluid">
 	<div class="row tex-center">
 		<div class="col-md-12">
-			<img src="https://www.fahasa.com/media/wysiwyg/banner/thang-03-2017/t3sachtre-1263.jpg" width="100%">
+			<img src="/images/banner-top.jpg" width="100%">
 		</div>
 	</div>
 </div>

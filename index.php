@@ -20,7 +20,7 @@ include "./config.php";
 	<!-- Latest compiled JavaScript -->
 	<script src="./js/bootstrap.min.js"></script>
 </head>
-<body  onload="<?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php') echo 'myFunction()'; ?>">
+<body  onload="<?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == '/index.php') echo 'myFunction()'; ?>" style="background-color: #f5f5f5">
 	<?php 
 	// Call to top.php
 	_top();
@@ -44,7 +44,7 @@ include "./config.php";
 	}
 	
 
-	// Footer
+		// Footer
 	_footer();
 	?>
 </body>

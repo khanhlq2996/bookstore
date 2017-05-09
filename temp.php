@@ -1,5 +1,5 @@
-<?php
-    session_start();
-    $_SESSION["name"] = "Kenny Huy";
-    echo $_SESSION["name"];
+<?php 
+$str = '1, 2, 3, 4, 5';
+$array = explode(',', $str);
+echo in_array("6",$array);
 ?>

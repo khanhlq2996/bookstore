@@ -1,24 +1,39 @@
-<div class="row" style="padding-left: 20px;">
+<div class="row" style="padding-left: 20px; height: 400px;">
 	<div class="col-md-9 col-md-offset-3">
 		<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
 			<!-- Indicators -->
+			<?php 
+			$con = mysqli_connect("localhost","root","","bookstore");
+			mysqli_set_charset($con, "utf8");
+			$sql = "SELECT * FROM slide WHERE slide_name ='slide home'";
+			$result = $con->query($sql); 
+			$row = $result->fetch_assoc();
+			$data = explode(',',$row["slide_list_img"]);
+			?>
 			<ol class="carousel-indicators">
-				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-				<li data-target="#myCarousel" data-slide-to="1"></li>
-				<li data-target="#myCarousel" data-slide-to="2"></li>
+				<?php 
+				for($i = 0; $i < sizeof($data); $i++){
+					?>
+					<li data-target="#myCarousel" data-slide-to=<?php echo '"'.$i.'"'; if($i == 0) echo ' class="active"'; ?> > </li>
+					<?php
+				}
+				?>
 			</ol>
 
 			<!-- Wrapper for slides -->
 			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<a href="#"><img src="https://www.fahasa.com/media/magentothem/banner7/HTBHNew-870.jpg"></a>
-				</div>
-				<div class="item">
-					<a href="#"><img src="https://www.fahasa.com/media/magentothem/banner7/HTBHNew-870.jpg"></a>
-				</div>
-				<div class="item">
-					<a href="#"><img src="https://www.fahasa.com/media/magentothem/banner7/HTBHNew-870.jpg"></a>				
-				</div>
+
+				<?php 
+				for ($i=0; $i < sizeof($data); $i++) { 
+					?>
+
+					<div class="item <?php if($i == 0) echo "active"; ?>">
+					<img src="http://lkshop.dev<?php echo $data[$i]; ?>">
+					</div>
+
+					<?php
+				}
+				?>
 			</div>
 
 			<!-- Left and right controls -->

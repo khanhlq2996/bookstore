@@ -8,7 +8,7 @@
 		<div class="col-md-9"  style="margin-top: 50px;">
 			<div class="row">
 				<div class="col-md-4">
-					<img src="http://saigongiaitri.net/uploads/news/2014_01/333.jpg" alt="Lights" style="width:100%">
+					<img src="/images/333.jpg" alt="Lights" style="width:100%">
 				</div>
 				<div class="col-md-8">
 					<h3>Phạm Thị Kim Hoa</h3>

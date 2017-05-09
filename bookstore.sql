@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 25, 2017 lúc 03:50 SA
+-- Thời gian đã tạo: Th5 06, 2017 lúc 10:37 SA
 -- Phiên bản máy phục vụ: 10.1.21-MariaDB
 -- Phiên bản PHP: 7.0.15
 
@@ -23,205 +23,231 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `admin`
+-- Cấu trúc bảng cho bảng `adminstrator`
 --
 
-CREATE TABLE `admin` (
-  `ID` int(11) NOT NULL,
-  `USERNAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `PASSWORD` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `QUYENHAN` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `admin`
---
-
-INSERT INTO `admin` (`ID`, `USERNAME`, `PASSWORD`, `QUYENHAN`) VALUES
-(35, 'khanh', '606d36240d940dcf0faaefc9c5be2d39', 1);
+CREATE TABLE `adminstrator` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `admin_password` varchar(32) COLLATE utf8_bin NOT NULL,
+  `admin_email` varchar(100) COLLATE utf8_bin NOT NULL,
+  `admin_level` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmucsach`
+-- Cấu trúc bảng cho bảng `author`
 --
 
-CREATE TABLE `danhmucsach` (
-  `LOAISACHID` varchar(5) NOT NULL,
-  `LOAISACH` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+CREATE TABLE `author` (
+  `author_id` int(11) NOT NULL,
+  `author_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `author_birthday` date DEFAULT NULL,
+  `author_date_of_death` date DEFAULT NULL,
+  `author_native_land` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `author_description` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `donhang`
+-- Cấu trúc bảng cho bảng `category`
 --
 
-CREATE TABLE `donhang` (
-  `IDGIAODICH` bigint(20) NOT NULL,
-  `IDDONHANG` int(255) NOT NULL,
-  `SACHID` int(11) NOT NULL,
-  `SOLUONG` int(11) NOT NULL DEFAULT '0',
-  `AMOUNT` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `STATUS` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `category` (
+  `category_id` int(11) NOT NULL,
+  `category_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `category_description` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `category_avata` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '/imges/author.png',
+  `category_parent` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `giaodich`
+-- Cấu trúc bảng cho bảng `comment`
 --
 
-CREATE TABLE `giaodich` (
-  `IDGIAODICH` bigint(20) NOT NULL,
-  `STATUS` tinyint(4) NOT NULL DEFAULT '0',
-  `USERID` int(11) NOT NULL DEFAULT '0',
-  `USERNAME` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `USEREMAIL` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `USERPHONE` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `AMOUNT` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `PAYMENT` varchar(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `PAYMENT_INFO` text CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `MESSAGE` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `CREATED` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `comment_messenger` varchar(200) COLLATE utf8_bin NOT NULL,
+  `comment_parent` int(11) DEFAULT NULL,
+  `comment_created` date NOT NULL,
+  `comment_like` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sach`
+-- Cấu trúc bảng cho bảng `menu`
 --
 
-CREATE TABLE `sach` (
-  `SACHID` int(11) NOT NULL,
-  `TENSACH` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `LOAISACH` varchar(100) NOT NULL,
-  `GIASACH` decimal(15,4) NOT NULL DEFAULT '0.0000',
-  `TACGIA` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `NXB` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `MOTA` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
-  `GIAMGIA` int(11) NOT NULL,
-  `IMAGELINK` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `CREATED` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Đang đổ dữ liệu cho bảng `sach`
---
-
-INSERT INTO `sach` (`SACHID`, `TENSACH`, `LOAISACH`, `GIASACH`, `TACGIA`, `NXB`, `MOTA`, `GIAMGIA`, `IMAGELINK`, `CREATED`) VALUES
-(1, 'eee', 'g', '555555.0000', 'huy', 'hn', 'dsfsffsfsfsf', 5, 'ttt/ll', '2017-04-06'),
-(3, 'become genous', 'phieu luu', '10000.0000', 'huy', 'hanoi', 'ssffds', 5, 'image/photo-list', '2017-04-05'),
-(4, 'become genous', 'phieu luu', '10000.0000', 'huy', 'hanoi', 'ssffds', 5, 'image/photo-list', '2017-04-05'),
-(38, '', '', '0.0000', '', '', '', 5, '', '0000-00-00'),
-(39, '', '', '0.0000', '', '', '', 0, '', '0000-00-00'),
-(40, '', '', '0.0000', '', '', '', 0, '', '0000-00-00');
+CREATE TABLE `menu` (
+  `menu_id` int(11) NOT NULL,
+  `menu_name` varchar(100) COLLATE utf8_bin NOT NULL,
+  `menu_url` varchar(100) COLLATE utf8_bin NOT NULL,
+  `menu_parent` int(11) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `thanhvien`
+-- Cấu trúc bảng cho bảng `options`
 --
 
-CREATE TABLE `thanhvien` (
-  `IDTV` int(11) NOT NULL,
-  `HOTEN` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `PASS` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
-  `DIACHI` varchar(50) NOT NULL,
-  `EMAIL` varchar(50) NOT NULL,
-  `PHONE` varchar(15) NOT NULL,
-  `CREATED` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+CREATE TABLE `options` (
+  `site_url` varchar(11) COLLATE utf8_bin NOT NULL,
+  `site_name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT 'Shop',
+  `site_description` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `site_email` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT 'contact@domain.com',
+  `site_phone` varchar(15) COLLATE utf8_bin NOT NULL DEFAULT '+84 123.456.789',
+  `site_maps_url` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT 'https://maps.google.com'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
 
 --
--- Đang đổ dữ liệu cho bảng `thanhvien`
+-- Cấu trúc bảng cho bảng `order`
 --
 
-INSERT INTO `thanhvien` (`IDTV`, `HOTEN`, `PASS`, `DIACHI`, `EMAIL`, `PHONE`, `CREATED`) VALUES
-(20, 'Le Quoc Khanh', '606d36240d940dcf0faaefc9c5be2d39', '', 'quockhanh.96.bka@gmail.com', '', '2017-04-21');
+CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `order_qty` int(11) NOT NULL DEFAULT '0',
+  `order_status` tinyint(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `product`
+--
+
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL,
+  `product_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `author_id` int(11) NOT NULL,
+  `categories` text COLLATE utf8_bin NOT NULL,
+  `product_description` text COLLATE utf8_bin NOT NULL,
+  `product_price` int(11) NOT NULL DEFAULT '0',
+  `product_avata` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '/imges/author.png',
+  `product_view` int(11) DEFAULT NULL,
+  `product_like` int(11) DEFAULT NULL,
+  `product_share` int(11) DEFAULT NULL,
+  `product_created` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `slide`
+--
+
+CREATE TABLE `slide` (
+  `slide_id` int(11) NOT NULL,
+  `slide_name` varchar(100) COLLATE utf8_bin NOT NULL,
+  `slide_list_img` text COLLATE utf8_bin NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `transaction`
+--
+
+CREATE TABLE `transaction` (
+  `transaction_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `user_phone` varchar(15) COLLATE utf8_bin NOT NULL,
+  `user_address` varchar(200) COLLATE utf8_bin NOT NULL,
+  `order` text COLLATE utf8_bin NOT NULL,
+  `total_pay` int(11) DEFAULT NULL,
+  `comment_created` date NOT NULL,
+  `transaction_status` tinyint(1) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` varchar(32) COLLATE utf8_bin NOT NULL,
+  `user_password` varchar(32) COLLATE utf8_bin NOT NULL,
+  `user_email` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user_phone` varchar(15) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `user_address` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT ''
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Chỉ mục cho bảng `admin`
+-- Chỉ mục cho bảng `adminstrator`
 --
-ALTER TABLE `admin`
-  ADD PRIMARY KEY (`ID`);
+ALTER TABLE `adminstrator`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
--- Chỉ mục cho bảng `danhmucsach`
+-- Chỉ mục cho bảng `author`
 --
-ALTER TABLE `danhmucsach`
-  ADD PRIMARY KEY (`LOAISACHID`);
+ALTER TABLE `author`
+  ADD PRIMARY KEY (`author_id`);
 
 --
--- Chỉ mục cho bảng `donhang`
+-- Chỉ mục cho bảng `category`
 --
-ALTER TABLE `donhang`
-  ADD PRIMARY KEY (`IDDONHANG`),
-  ADD KEY `IDGIAODICH` (`IDGIAODICH`),
-  ADD KEY `SACHID` (`SACHID`);
+ALTER TABLE `category`
+  ADD PRIMARY KEY (`category_id`);
 
 --
--- Chỉ mục cho bảng `giaodich`
+-- Chỉ mục cho bảng `comment`
 --
-ALTER TABLE `giaodich`
-  ADD PRIMARY KEY (`IDGIAODICH`);
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`);
 
 --
--- Chỉ mục cho bảng `sach`
+-- Chỉ mục cho bảng `menu`
 --
-ALTER TABLE `sach`
-  ADD PRIMARY KEY (`SACHID`);
+ALTER TABLE `menu`
+  ADD PRIMARY KEY (`menu_id`);
 
 --
--- Chỉ mục cho bảng `thanhvien`
+-- Chỉ mục cho bảng `order`
 --
-ALTER TABLE `thanhvien`
-  ADD PRIMARY KEY (`IDTV`);
+ALTER TABLE `order`
+  ADD PRIMARY KEY (`order_id`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- Chỉ mục cho bảng `product`
 --
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
 
 --
--- AUTO_INCREMENT cho bảng `admin`
+-- Chỉ mục cho bảng `slide`
 --
-ALTER TABLE `admin`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
---
--- AUTO_INCREMENT cho bảng `donhang`
---
-ALTER TABLE `donhang`
-  MODIFY `IDDONHANG` int(255) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `giaodich`
---
-ALTER TABLE `giaodich`
-  MODIFY `IDGIAODICH` bigint(20) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT cho bảng `sach`
---
-ALTER TABLE `sach`
-  MODIFY `SACHID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
---
--- AUTO_INCREMENT cho bảng `thanhvien`
---
-ALTER TABLE `thanhvien`
-  MODIFY `IDTV` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
---
--- Các ràng buộc cho các bảng đã đổ
---
+ALTER TABLE `slide`
+  ADD PRIMARY KEY (`slide_id`);
 
 --
--- Các ràng buộc cho bảng `donhang`
+-- Chỉ mục cho bảng `transaction`
 --
-ALTER TABLE `donhang`
-  ADD CONSTRAINT `donhang_ibfk_1` FOREIGN KEY (`SACHID`) REFERENCES `sach` (`SACHID`),
-  ADD CONSTRAINT `donhang_ibfk_2` FOREIGN KEY (`IDGIAODICH`) REFERENCES `giaodich` (`IDGIAODICH`),
-  ADD CONSTRAINT `donhang_ibfk_3` FOREIGN KEY (`SACHID`) REFERENCES `sach` (`SACHID`);
+ALTER TABLE `transaction`
+  ADD PRIMARY KEY (`transaction_id`);
+
+--
+-- Chỉ mục cho bảng `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-4">
 			<a href="index.php">
-				<img src="https://www.fahasa.com/skin/frontend/ma_vanese/fahasa/images/logo.png" alt="">
+				<img src="/images/logo.png" alt="">
 			</a>
 		</div>
 
@@ -21,15 +21,22 @@
 		</div>
 
 		<div class="col-md-2">
-			<a href="#">
-				<span class="glyphicon glyphicon-shopping-cart" style="font-size: 50px;"></span>
-				<b>Cart</b>
-			</a>		
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<span class="glyphicon glyphicon-shopping-cart" style="font-size: 50px;"></span>
+					<b>Giỏ hàng</b>
+					<p>120000 vnđ</p>
+				</a>		
+				<ul class="dropdown-menu">
+					<li><a href="index.php?v=page&id=4">Giỏ hàng</a></li>
+					<li><a href="index.php?v=page&id=5">Thanh toán</a></li>	
+				</ul>
+			</li>
 		</div>	
 	</div>
 
 </div>
 
 <?php 
-	_nav();
- ?>
+_nav();
+?>
