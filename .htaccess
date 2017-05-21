@@ -1,0 +1,25 @@
+RewriteEngine On
+
+
+
+RewriteRule ^$ public_html/template/bookstore/index.php
+
+RewriteRule ^chuyen-muc/([a-zA-Z0-9-]+)-([0-9]+)$ public_html/template/bookstore/index.php?v=category&slug=$1&id=$2
+
+RewriteRule ^chuyen-muc/([a-zA-Z0-9-]+)-([0-9]+)/trang-([0-9]+).html$ public_html/template/bookstore/index.php?v=category&slug=$1&id=$2&page=$3
+
+RewriteRule ^san-pham/([a-zA-Z0-9-]+)-([0-9]+).html$ public_html/template/bookstore/index.php?v=product&slug=$1&id=$2
+
+RewriteRule ^tac-gia/([0-9]+).html$ public_html/template/bookstore/index.php?v=author&id=$1
+
+RewriteRule ^lien-he.html$ public_html/template/bookstore/index.php?v=page&id=1
+
+RewriteRule ^dang-nhap.html$ public_html/template/bookstore/index.php?v=page&id=2
+
+RewriteRule ^dang-ky.html$ public_html/template/bookstore/index.php?v=page&id=3
+
+RewriteRule ^gio-hang.html$ public_html/template/bookstore/index.php?v=page&id=4
+
+RewriteRule ^thanh-toan.html$ public_html/template/bookstore/index.php?v=page&id=5
+
+RewriteRule ^thong-tin-ca-nhan.html$ public_html/template/bookstore/index.php?v=page&id=6
