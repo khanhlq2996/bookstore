@@ -1,12 +1,14 @@
-
+<?php 
+$c_bookstore = new C_bookstore();
+$options = $c_bookstore->options();
+?>
 <h3 class="text-center">Liên Hệ</h3>
 <p class="text-center"><em>We love our fans!</em></p>
 <div class="row test">
   <div class="col-md-4">
-    <p>Fan? Drop a note.</p>
-    <p><span class="glyphicon glyphicon-map-marker"></span>Chicago, US</p>
-    <p><span class="glyphicon glyphicon-phone"></span>Phone: +00 1515151515</p>
-    <p><span class="glyphicon glyphicon-envelope"></span>Email: mail@mail.com</p> 
+    <p><span class="glyphicon glyphicon-map-marker"></span><?=$options->site_address?></p>
+    <p><span class="glyphicon glyphicon-phone"></span>Phone: <?=$options->site_phone?></p>
+    <p><span class="glyphicon glyphicon-envelope"></span>Email: <?=$options->site_email?></p> 
   </div>
   <div class="col-md-8">
     <div class="row">

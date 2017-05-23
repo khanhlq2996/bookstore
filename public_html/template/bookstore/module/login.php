@@ -10,7 +10,7 @@
 		// 	echo '</div>';
 		// }
 		?>
-		<form method="POST" action="./module/processing-login-nav.php">
+		<form method="POST" action="/public_html/template/bookstore/module/processing-login-nav.php">
 			<div class="form-group">
 				<label for="email">Email address:</label>
 				<input type="email" name="email" class="form-control" id="email">
@@ -23,7 +23,7 @@
 				<label><input type="checkbox"> Remember me</label>
 			</div>
 			<button type="submit" class="btn btn-default">Submit</button>
-			<a style="float: right;" href="index.php?v=page&id=3">Bạn chưa có tài khoản, Đăng ký tại đây!!</a>
+			<a style="float: right;" href="/dang-ky.html">Bạn chưa có tài khoản, Đăng ký tại đây!!</a>
 		</form>
 	</div>
 </div>

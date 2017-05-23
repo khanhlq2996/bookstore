@@ -62,5 +62,12 @@ class M_bookstore extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
+
+	function getOptions()
+	{
+		$sql = "SELECT * FROM options";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
 }
 ?>

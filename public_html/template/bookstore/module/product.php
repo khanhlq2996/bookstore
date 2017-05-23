@@ -1,7 +1,7 @@
 <div class="<?php echo $col; ?>">
 	<div class="thumbnail2">
 		<a href="index.php?v=product">
-			<img src="/images/8935246906361.jpg" alt="Lights" style="width:100%;">
+			<img src="/public_html/template/bookstore/images/8935246906361.jpg" alt="Lights" style="width:100%;">
 		</a>
 
 		

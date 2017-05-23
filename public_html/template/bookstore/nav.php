@@ -1,8 +1,8 @@
 <?php
+session_start();
 $c_bookstore = new C_bookstore();
 $categories = $c_bookstore->menuCategory()['categoryes'];
 $menu = $c_bookstore->menu()['menu'];
-
 ?>
 <div class="container" style="margin-top: 30px;">
 	<div class="row">
@@ -23,7 +23,7 @@ $menu = $c_bookstore->menu()['menu'];
 										<div>
 											<ul class="nav nav-stacked"  role="tablist">
 												<?php 
-												for ($i=0; $i < 8; $i++) { 
+												for ($i=8; $i < count($categories); $i++) { 
 													echo '<li><a href="/chuyen-muc/'. $categories[$i]->slug .'-'. $categories[$i]->category_id .'">'. $categories[$i]->category_name.'</a></li>';
 												}
 												?>
@@ -49,26 +49,25 @@ $menu = $c_bookstore->menu()['menu'];
 					</ul>
 
 					<ul class="nav navbar-nav navbar-right" style="color: blue;">
-						<?php 
-							if(isset($_SESSION["name"])){
-								echo '<li class="dropdown">';
-								echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào '. $_SESSION["name"] .'!</a>';
-								echo '<ul class="dropdown-menu">
-								<li><a href="thong-tin-ca-nhan.html">Thông tin cá nhân</a></li>
-								<li><a href="./module/logout.php">Đăng xuất</a></li>
-							</ul></li>';
+						<?php
+						if(isset($_SESSION["name"])){
+							echo '<li class="dropdown">';
+							echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào '. $_SESSION["name"] .'!</a>';
+							echo '<ul class="dropdown-menu">
+							<li><a href="thong-tin-ca-nhan.html">Thông tin cá nhân</a></li>
+							<li><a href="/public_html/template/bookstore/module/logout.php">Đăng xuất</a></li>
+						</ul></li>';
 
-						} else {
-							echo '<li><a href="#" id="myBtn">Đăng nhập/Đăng ký</a></li>';
-						}
-						?>							
-					</ul>
-				</div>
-			</div>			
-		</div>
+					} else {
+						echo '<li><a href="#" id="myBtn">Đăng nhập/Đăng ký</a></li>';
+					}
+					?>							
+				</ul>
+			</div>
+		</div>			
 	</div>
 </div>
-
+</div>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -81,7 +80,7 @@ $menu = $c_bookstore->menu()['menu'];
 				<h4><span class="glyphicon glyphicon-lock"></span> Đăng nhập</h4>
 			</div>
 			<div class="modal-body" style="padding:40px 50px;">
-				<form role="form" action="./module/processing-login-nav.php" method="POST">
+				<form role="form" action="/public_html/template/bookstore/module/processing-login-nav.php" method="POST">
 					<div class="form-group">
 						<label for="usrname"><span class="glyphicon glyphicon-user"></span> Tài khoản hoặc Email</label>
 						<input type="text" class="form-control" id="usrname" name="email" placeholder="Enter email">
@@ -93,7 +92,9 @@ $menu = $c_bookstore->menu()['menu'];
 					<div class="checkbox">
 						<label><input type="checkbox" value="" checked>Remember me</label>
 					</div>
-					<button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
+					<button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
+
+					<button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-off"></span> Đăng nhập Bằng Facebook</button>
 				</form>
 			</div>
 			<div class="modal-footer">

@@ -5,7 +5,14 @@ include '../../../model/m_bookstore.php';
 */
 class C_bookstore
 {
-	
+		
+	public function options()
+	{
+		$m_bookstore = new M_bookstore();
+		$options = $m_bookstore->getOptions()[0];
+		return $options;
+	}
+
 	public function slide()
 	{
 		$m_bookstore = new M_bookstore();

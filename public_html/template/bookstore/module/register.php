@@ -9,9 +9,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 		$noti = "<div class='alert alert-danger'>
 		You must fill in all of the fields</div>";
 	} else {
-		_connect();
+		$con = mysqli_connect("localhost","root","","bookstore");
+		mysqli_set_charset($con, "utf8");
+		// Check connection
+		if (mysqli_connect_errno())
+		{
+			echo "Failed to connect to MySQL: " . mysqli_connect_error();
+		}
 
-		$sql = "SELECT EMAIL FROM thanhvien WHERE EMAIL = '$email' ";
+		$sql = "SELECT user_email FROM user WHERE user_email = '$email' ";
 		$result = $con->query($sql);
 
 		// check if email exist
@@ -19,11 +25,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			$noti = "<div class='alert alert-danger'>
 			This email has been used. Please try another</div>";
 		} else {
-			$sql = "INSERT INTO thanhvien (HOTEN, PASS, EMAIL, CREATED)
-			VALUE ('". $name ."', '". $pwd ."', '". $email ."', '". date('Y-m-d') ."')";
+			$sql = "INSERT INTO user (user_name, user_password, user_email)
+			VALUE ('". $name ."', '". $pwd ."', '". $email ."')";
 			if ($con->query($sql) === TRUE) {
 				$noti = "<div class='alert alert-success'>
-				Sign Up successfully, Login <a href='/index.php?v=page&id=2'>Click Here</a></div>";
+				Sign Up successfully, Login <a href='/dang-nhap.html'>Click Here</a></div>";
 			} else {
 				echo "Error: " . $sql . "<br>" . $con->error;
 			}

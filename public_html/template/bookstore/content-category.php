@@ -23,10 +23,10 @@ if (!isset($_GET["id"])) {
 				<h1><?= $category->category_name?></h1> 
 				<div class="row">
 					<div class="col-md-3">
-						<img src="/public_html/template/bookstore<?= $category->category_avata?>" style="width: 100%;">
+						<img src="<?php if($category->category_avata == null){echo '/public_html/template/bookstore/images/image-placeholder-400x300.jpg';} else echo $category->category_avata?>" style="width: 100%;">
 					</div>
 					<div class="col-md-9">
-						<p><?= $category->category_description?></p>
+						<h4><?= $category->category_description?></h4>
 					</div>
 				</div>
 				<br><br>
