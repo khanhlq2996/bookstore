@@ -26,7 +26,7 @@
 					?>
 
 					<div class="item <?php if($i == 0) echo "active"; ?>">
-						<img src="/public_html/template/bookstore<?php echo $data[$i]; ?>">
+						<img src="<?php echo $data[$i]; ?>">
 					</div>
 
 					<?php

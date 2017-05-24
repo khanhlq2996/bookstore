@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 $c_bookstore = new C_bookstore();
 $categories = $c_bookstore->menuCategory()['categoryes'];
 $menu = $c_bookstore->menu()['menu'];
@@ -74,13 +74,13 @@ $menu = $c_bookstore->menu()['menu'];
 	<div class="modal-dialog">
 
 		<!-- Modal content-->
-		<div class="modal-content">
+		<div class="modal-content col-md-10 col-md-offset-1">
 			<div class="modal-header" style="padding:35px 50px;">
 				<button type="button" class="close" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span></button>
 				<h4><span class="glyphicon glyphicon-lock"></span> Đăng nhập</h4>
 			</div>
 			<div class="modal-body" style="padding:40px 50px;">
-				<form role="form" action="/public_html/template/bookstore/module/processing-login-nav.php" method="POST">
+				<form role="form" action="/" method="POST">
 					<div class="form-group">
 						<label for="usrname"><span class="glyphicon glyphicon-user"></span> Tài khoản hoặc Email</label>
 						<input type="text" class="form-control" id="usrname" name="email" placeholder="Enter email">
@@ -92,9 +92,11 @@ $menu = $c_bookstore->menu()['menu'];
 					<div class="checkbox">
 						<label><input type="checkbox" value="" checked>Remember me</label>
 					</div>
-					<button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
+					<button type="submit" class="btn btn-md btn-success"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
 
-					<button type="submit" class="btn btn-lg btn-primary"><span class="glyphicon glyphicon-off"></span> Đăng nhập Bằng Facebook</button>
+					<br><br>
+
+					<button type="submit" class="btn btn-md btn-primary"><span class="glyphicon glyphicon-off"></span> Đăng nhập Bằng Facebook</button>
 				</form>
 			</div>
 			<div class="modal-footer">

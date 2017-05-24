@@ -74,6 +74,12 @@ class C_bookstore
 		return array('total_page' => $total_page, 'start' => $start, 'limit' => $limit);
 	}
 
+	public function checkLog($email, $pass)
+	{
+		$m_bookstore = new M_bookstore();
+		$check = $m_bookstore->checkUser($email, $pass);
+		return $check[0]->user_name;
+	}
 }
 
 ?>

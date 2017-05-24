@@ -69,5 +69,12 @@ class M_bookstore extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
+
+	function checkUser($email, $pass)
+	{
+		$sql = "SELECT user_name FROM user WHERE (user_email = '$email') AND (user_password = '$pass')";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
 }
 ?>
