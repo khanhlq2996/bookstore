@@ -3,15 +3,16 @@ include "./function.php";
 include "../../../controller/c_bookstore.php";
 session_start();
 
-if($_SERVER["REQUEST_METHOD"] == "POST") {
+if(isset($_REQUEST["log-in"])) {
+	echo "asdas";
 	$email_user = $_POST['email'];
 	$pwd = md5($_POST['password']);
 
 	$c_bookstore = new C_bookstore();
-	$userName = $c_bookstore->checkLog($email_user, $pwd);
-	if ($userName !== null) {
+	$userID = $c_bookstore->checkLog($email_user, $pwd);
+	if ($userID !== null) {
 		# code...
-		$_SESSION["name"] = $userName;
+		$_SESSION["id"] = $userID;
 		header("Location: /");
 	}
 }

@@ -72,9 +72,26 @@ class M_bookstore extends database
 
 	function checkUser($email, $pass)
 	{
-		$sql = "SELECT user_name FROM user WHERE (user_email = '$email') AND (user_password = '$pass')";
+		$sql = "SELECT user_id FROM user WHERE (user_email = '$email') AND (user_password = '$pass')";
 		$this->setQuery($sql);
 		return $this->loadAllRows();
+	}
+
+	function getUser($id)
+	{
+		$sql = "SELECT * FROM user WHERE (user_id = '$id')";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
+	function updateUser($id, $name, $addr, $phone)
+	{
+		$sql = "UPDATE user SET user_name = '$name', user_phone = '$phone', user_address = '$addr' WHERE user.user_id = $id";
+		$this->setQuery($sql);
+		$result = $this->execute();
+		if($result){
+			return "done";
+		} else return "fall";
 	}
 }
 ?>

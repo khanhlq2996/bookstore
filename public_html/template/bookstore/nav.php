@@ -1,5 +1,4 @@
 <?php
-//session_start();
 $c_bookstore = new C_bookstore();
 $categories = $c_bookstore->menuCategory()['categoryes'];
 $menu = $c_bookstore->menu()['menu'];
@@ -50,9 +49,12 @@ $menu = $c_bookstore->menu()['menu'];
 
 					<ul class="nav navbar-nav navbar-right" style="color: blue;">
 						<?php
-						if(isset($_SESSION["name"])){
+						if(isset($_SESSION["id"])){
 							echo '<li class="dropdown">';
-							echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào '. $_SESSION["name"] .'!</a>';
+							echo '<a class="dropdown-toggle" data-toggle="dropdown" href="#">Xin chào ';
+							$getUserInfo = $c_bookstore->getUser($_SESSION["id"]);
+							echo $getUserInfo->user_name;
+							echo'!</a>';
 							echo '<ul class="dropdown-menu">
 							<li><a href="thong-tin-ca-nhan.html">Thông tin cá nhân</a></li>
 							<li><a href="/public_html/template/bookstore/module/logout.php">Đăng xuất</a></li>
@@ -92,7 +94,7 @@ $menu = $c_bookstore->menu()['menu'];
 					<div class="checkbox">
 						<label><input type="checkbox" value="" checked>Remember me</label>
 					</div>
-					<button type="submit" class="btn btn-md btn-success"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
+					<button type="submit" name="log-in" class="btn btn-md btn-success"><span class="glyphicon glyphicon-off"></span> Đăng nhập</button>
 
 					<br><br>
 
@@ -101,8 +103,8 @@ $menu = $c_bookstore->menu()['menu'];
 			</div>
 			<div class="modal-footer">
 				<button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
-				<p>Bạn chưa có tài khoản? <a href="dang-ky.html">Đăng ký</a></p>
-				<p>Quên <a href="#">Mật khẩu?</a></p>
+				<p>Bạn chưa có tài khoản? <a href="dang-ky.html">Đăng ký</a></p><!-- 
+				<p>Quên <a href="#">Mật khẩu?</a></p> -->
 			</div>
 		</div>
 	</div>

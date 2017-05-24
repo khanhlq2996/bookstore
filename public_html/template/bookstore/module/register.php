@@ -40,7 +40,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div id="register" style="padding: 20px;">
+<div id="register" style="padding: 20px;" class="col-md-8 col-md-offset-2">
 	<h2>Đăng ký thành viên</h2>
 
 	<h3>  <?php echo $noti; ?><br>
@@ -83,6 +83,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
 			<label><input type="checkbox"> Remember me</label>
 		</div>
 		<button type="submit" class="btn btn-default" id="register">Submit</button>
-		<a style="float: right;" href="index.php?v=page&id=2">Bạn đã có tài khoản, Đăng nhập tại đây!!</a>
+		<a style="float: right;" href="dang-nhap.html">Bạn đã có tài khoản, Đăng nhập tại đây!!</a>
 	</form>
 </div>

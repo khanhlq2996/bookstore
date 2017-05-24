@@ -12,7 +12,7 @@ class database{
     public function setQuery($sql) {
         $this->_sql = $sql;
     }
-    
+
     //Function execute the query 
     public function execute($options=array()) {
         $this->_cursor = $this->_dbh->prepare($this->_sql);

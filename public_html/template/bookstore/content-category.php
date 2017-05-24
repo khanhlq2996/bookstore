@@ -32,7 +32,7 @@ if (!isset($_GET["id"])) {
 				<br><br>
 				
 				<div class="text-right">
-					<ul class="pagination">
+					<ul class="pagination boder-radius-0">
 						
 						<?php 
 						if($curent_page > 1 && $total_page > 1){
@@ -73,7 +73,7 @@ if (!isset($_GET["id"])) {
 										<p><b><?= $value->product_price?> VNĐ</b></p>
 									</div>
 									<div class="text-center">
-										<a href="/gio-hang.html" class="btn btn-primary"> Mua Sách </a>
+										<a style="border-radius: 0px;" href="/gio-hang.html" class="btn btn-success"> Mua Sách </a>
 									</div>
 								</div>
 
@@ -89,7 +89,7 @@ if (!isset($_GET["id"])) {
 						
 						<?php 
 						if($curent_page > 1 && $total_page > 1){
-							echo '<li><a href="/chuyen-muc/'. $category->slug .'-'. $category->category_id.'/trang-'.($curent_page-1).'.html">Prev</a></li>';
+							echo '<li><a class="boder-radius-0" href="/chuyen-muc/'. $category->slug .'-'. $category->category_id.'/trang-'.($curent_page-1).'.html">Prev</a></li>';
 						}
 
 						for ($i=1; $i <=$total_page ; $i++) { 

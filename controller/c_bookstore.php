@@ -5,7 +5,7 @@ include '../../../model/m_bookstore.php';
 */
 class C_bookstore
 {
-		
+
 	public function options()
 	{
 		$m_bookstore = new M_bookstore();
@@ -78,7 +78,21 @@ class C_bookstore
 	{
 		$m_bookstore = new M_bookstore();
 		$check = $m_bookstore->checkUser($email, $pass);
-		return $check[0]->user_name;
+		return $check[0]->user_id;
+	}
+
+	public function getUser($id)
+	{
+		$m_bookstore = new M_bookstore();
+		$check = $m_bookstore->getUser($id);
+		return $check[0];
+	}
+
+	public function updateUser($id, $name, $addr, $phone)
+	{
+		$m_bookstore = new M_bookstore();
+		$update = $m_bookstore->updateUser($id, $name, $addr, $phone);
+		return $update;
 	}
 }
 

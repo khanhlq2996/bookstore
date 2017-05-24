@@ -7,9 +7,9 @@ $options = $c_bookstore->options();
 		<div class="col-md-12 text-center">
 			<form class="form-inline">		
 				<div class="input-group">
-					<input type="email" class="form-control" size="50" placeholder="Email Address" required>
+					<input style="border-radius: 0px;" type="email" class="form-control" size="50" placeholder="Email Address" required>
 					<div class="input-group-btn">
-						<button type="button" class="btn btn-danger">Subscribe</button>
+						<button type="button" class="btn btn-success" style="border-radius: 0px;">Subscribe</button>
 					</div>
 				</div>
 			</form>
