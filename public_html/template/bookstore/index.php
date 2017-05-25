@@ -9,7 +9,7 @@ if(isset($_REQUEST["log-in"])) {
 
 	$c_bookstore = new C_bookstore();
 	$userID = $c_bookstore->checkLog($email_user, $pwd);
-	if ($userID !== null) {
+	if ($userID !== false) {
 		# code...
 		$_SESSION["id"] = $userID;
 		header("Location: /");
@@ -58,7 +58,7 @@ if (isset($_REQUEST["add_to_cart"])) {
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="/public_html/template/bookstore/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body  onload="total(); <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == 'index.php') echo 'myFunction()'; ?> " style="background-color: #f5f5f5">
+<body  onload="<?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == 'index.php') echo 'myFunction()'; ?> " style="background-color: #f5f5f5">
 	<?php
 	
 	// Call to top.php

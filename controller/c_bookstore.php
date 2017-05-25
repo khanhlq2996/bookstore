@@ -78,14 +78,17 @@ class C_bookstore
 	{
 		$m_bookstore = new M_bookstore();
 		$check = $m_bookstore->checkUser($email, $pass);
-		return $check[0]->user_id;
+		if($check){
+			return $check[0]->user_id;
+		}
+		else return false;
 	}
 
 	public function getUser($id)
 	{
 		$m_bookstore = new M_bookstore();
 		$check = $m_bookstore->getUser($id);
-		return $check[0];
+		return $check;
 	}
 
 	public function updateUser($id, $name, $addr, $phone)
@@ -122,6 +125,21 @@ class C_bookstore
 		$get = $m_bookstore->bestViewProducts();
 		return array('products'=>$get);
 	}
+
+	public function getComments($id)
+	{
+		$m_bookstore = new M_bookstore();
+		$cmt = $m_bookstore->getComments($id);
+		return $cmt;
+	}
+
+	public function addComment($user_id, $product_id, $cmt)
+	{
+		$m_bookstore = new M_bookstore();
+		$cmt = $m_bookstore->addComment($user_id, $product_id, $cmt);
+		return $cmt;
+	}
+
 }
 
 ?>

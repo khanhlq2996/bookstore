@@ -95,7 +95,7 @@ class M_bookstore extends database
 	{
 		$sql = "SELECT * FROM user WHERE (user_id = '$id')";
 		$this->setQuery($sql);
-		return $this->loadAllRows();
+		return $this->loadRow();
 	}
 
 	function updateUser($id, $name, $addr, $phone)
@@ -134,6 +134,21 @@ class M_bookstore extends database
 		if($result){
 			return true;
 		} else return false;
+	}
+
+	function getComments($id)
+	{
+		$sql = "SELECT * FROM comment WHERE product_id = $id ORDER BY comment_created DESC";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
+	function addComment($user_id, $product_id, $cmt)
+	{
+		$sql = "INSERT INTO comment(product_id, user_id, comment_messenger, comment_created) VALUES ($product_id, $user_id, '".$cmt."', '".date("Y-m-d")."')";
+		//echo $sql;
+		$this->setQuery($sql);
+		return $this->loadAllRows();
 	}
 }
 ?>

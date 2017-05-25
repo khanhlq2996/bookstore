@@ -21,8 +21,9 @@ if(isset($_SESSION["id"])){
 	{
 		$c_bookstore = new C_bookstore();
 		$id=$_SESSION["id"]; 
-		$pass=$_POST["new_password"];
+		$pass=md5($_POST["new_password"]);
 		$update = $c_bookstore->updateUserPass($id, $pass);
+		//header('Location: /');
 	}
 	$getuserinfo = $c_bookstore->getuser($_SESSION["id"]);
 	?>
