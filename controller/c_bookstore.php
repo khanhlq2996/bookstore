@@ -94,6 +94,34 @@ class C_bookstore
 		$update = $m_bookstore->updateUser($id, $name, $addr, $phone);
 		return $update;
 	}
+
+	public function updateUserPass($id, $pass)
+	{
+		$m_bookstore = new M_bookstore();
+		$update = $m_bookstore->updateUserPass($id, $pass);
+		return $update;
+	}
+
+	public function addView($id)
+	{
+		$m_bookstore = new M_bookstore();
+		$result = $m_bookstore->addView($id);
+		return $result;
+	}
+
+	public function newProducts()
+	{
+		$m_bookstore = new M_bookstore();
+		$get = $m_bookstore->getNewProducts();
+		return array('products'=>$get);
+	}
+
+	public function bestViewProducts()
+	{
+		$m_bookstore = new M_bookstore();
+		$get = $m_bookstore->bestViewProducts();
+		return array('products'=>$get);
+	}
 }
 
 ?>

@@ -26,6 +26,7 @@
 
 						<div class="col-md-7">
 							<h2><?php echo $product->product_name ?></h2>
+							<h2>Lượt xem: <?= $product->product_view ?></h2>
 							<?php 
 							$author_name = $c_bookstore->author($product->author_id)['author'][0];
 							echo '<h3>Tác giả: <a href="/tac-gia/'.$product->author_id.'.html" style="margin:3px;">'.$author_name->author_name.'</a></h3>';
@@ -67,12 +68,13 @@
 		<?php 
 		$productNext = $c_bookstore->product($_GET["id"]+1)['product'][0];
 		$productPrevious = $c_bookstore->product($_GET["id"]-1)['product'][0];
-		 ?>
+		?>
 		<li><a href="/san-pham/<?= $productPrevious->slug.'-'.$productPrevious->product_id ?>.html">Previous</a></li>
 		<li><a href="/san-pham/<?= $productNext->slug.'-'.$productNext->product_id ?>.html">Next</a></li>
 	</ul>
 
 	<?php 
+	$add=$c_bookstore->addView($product->product_id);
 	include "./module/related-products.php";
 	?>
 </div>

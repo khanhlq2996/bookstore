@@ -15,6 +15,7 @@ if(isset($_SESSION["id"])){
 		}
 		$c_bookstore = new C_bookstore();
 		$update = $c_bookstore->updateUser($id, $name, $addr, $phone);
+		echo "<h3>Cập nhật thông tin thành công!</h3>";
 	}
 	elseif (isset($_REQUEST["update-password"]))
 	{

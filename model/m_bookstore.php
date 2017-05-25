@@ -56,6 +56,20 @@ class M_bookstore extends database
 		return $this->loadAllRows();
 	}
 
+	function getNewProducts()
+	{
+		$sql = "SELECT * FROM product ORDER BY product_created DESC LIMIT 0, 9";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
+	function bestViewProducts()
+	{
+		$sql = "SELECT * FROM product ORDER BY product_view DESC LIMIT 0, 9";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
 	function getNumProductOfCategory($category_id)
 	{
 		$sql = "SELECT COUNT('product_id') as total FROM product WHERE find_in_set($category_id, categories)";
@@ -90,8 +104,36 @@ class M_bookstore extends database
 		$this->setQuery($sql);
 		$result = $this->execute();
 		if($result){
-			return "done";
-		} else return "fall";
+			return true;
+		} else return false;
+	}
+
+	function updateUserPass($id, $pass)
+	{
+		$sql = "UPDATE user SET user_password = '$pass' WHERE user.user_id = $id";
+		$this->setQuery($sql);
+		$result = $this->execute();
+		if($result){
+			return true;
+		} else return false;
+	}
+
+	function getView($id)
+	{
+		$sql = "SELECT product_view FROM product WHERE product_id = $id";
+		$this->setQuery($sql);
+		return $this->loadRow();
+	}
+
+	function addView($id)
+	{
+		$view = $this->getView($id)->product_view + 1;
+		$sql = "UPDATE product SET product_view = $view WHERE product_id = '$id'";
+		$this->setQuery($sql);
+		$result = $this->execute();
+		if($result){
+			return true;
+		} else return false;
 	}
 }
 ?>
