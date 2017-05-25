@@ -1,4 +1,13 @@
+<?php 
+if(isset($_SESSION["cart"]))
+{
+	$cart = $_SESSION["cart"];
+	//print_r($cart);
 
+} else {
+	echo "Gio hang trong??";
+}
+?>
 <h3>Giỏ hàng</h3>
 <table class="table table-bordered">
 	<thead>
@@ -12,20 +21,27 @@
 		</tr>
 	</thead>
 	<tbody>
-
-		<tr>
-			<td><img src="/images/product.jpg" width="150px;"></td>
-			<td><p>Bí mật người DO THÁI</p></td>
-			<td id="price">120000</td>
-			<td class="text-center"> 
-				<button type="button" class="glyphicon glyphicon-minus btn" onclick="pre()" id="btn-mi"></button>
-				<span id="num"> 1 </span>
-				<button type="button" class="glyphicon glyphicon-plus btn" onclick="plus()"></button>
-			</td>
-			<td id="total">120000</td>
-			<td class="text-center"> <button type="button" class="glyphicon glyphicon-refresh btn"></button>&nbsp;&nbsp;<button type="button" class="glyphicon glyphicon-remove btn"></button></td>
-		</tr>
-
+		<?php 
+		foreach ($cart as $value) {
+			$c_bookstore = new C_bookstore();
+			$book = $c_bookstore->product($value["id"]);
+			//print_r($book);
+			?>
+			<tr>
+				<td><img src="<?= $book["product"][0]->product_avata?>" width="150px;"></td>
+				<td><p><?= $book["product"][0]->product_name?></p></td>
+				<td id="price"><?= $book["product"][0]->product_price?></td>
+				<td class="text-center"> 
+					<button type="button" class="glyphicon glyphicon-minus btn" onclick="pre()" id="btn-mi"></button>
+					<span id="num"> <?= $value["qty"]?> </span>
+					<button type="button" class="glyphicon glyphicon-plus btn" onclick="plus()"></button>
+				</td>
+				<td id="total"></td>
+				<td class="text-center"> <button type="button" class="glyphicon glyphicon-refresh btn"></button>&nbsp;&nbsp;<button type="button" class="glyphicon glyphicon-remove btn"></button></td>
+			</tr>
+			<?php
+		}
+		?>
 
 		<tr>
 			<td colspan="6">
@@ -78,7 +94,6 @@
 		}
 		num--;
 		document.getElementById("num").innerHTML = num;
-		total(num);
 	}
 
 	function plus(){
@@ -88,12 +103,11 @@
 		}
 		num++;
 		document.getElementById("num").innerHTML = num;
-		total(num);
 	}
 
-	function total(num){
+	function total(){
+		var num = +document.getElementById("num").innerHTML;
 		var price = +document.getElementById("price").innerHTML;
-
 		document.getElementById("total").innerHTML = (num * price);
 	}
 </script>

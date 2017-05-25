@@ -4,7 +4,6 @@ include "../../../controller/c_bookstore.php";
 session_start();
 
 if(isset($_REQUEST["log-in"])) {
-	echo "asdas";
 	$email_user = $_POST['email'];
 	$pwd = md5($_POST['password']);
 
@@ -15,6 +14,30 @@ if(isset($_REQUEST["log-in"])) {
 		$_SESSION["id"] = $userID;
 		header("Location: /");
 	}
+}
+
+if (isset($_REQUEST["add_to_cart"])) {
+	# code...
+	$id = $_POST["add_to_cart"];
+	$qty = $_POST["qty"];
+	$flag = false;
+	if(isset($_SESSION["cart"])){
+		for ($i=0; $i < count($_SESSION["cart"]); $i++) { 
+			# code...
+			//echo $_SESSION["cart"][$i]["qty"];
+			if($_SESSION["cart"][$i]["id"] == $id){
+				$_SESSION["cart"][$i]["qty"] += $qty;
+				$flag = true;
+				break;
+			}
+		}
+		if($flag == false){
+			$_SESSION["cart"][count($_SESSION["cart"])]=array('id' => $id, 'qty' => $qty);
+		}
+	} else {
+		$_SESSION["cart"]=array(array('id' => $id, 'qty' => $qty));	
+	}
+	//unset($_SESSION["cart"]);
 }
 ?>
 
@@ -35,7 +58,7 @@ if(isset($_REQUEST["log-in"])) {
 	<!-- Latest compiled and minified JavaScript -->
 	<script src="/public_html/template/bookstore/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
-<body  onload="<?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == 'index.php') echo 'myFunction()'; ?>" style="background-color: #f5f5f5">
+<body  onload="total(); <?php if($_SERVER['REQUEST_URI'] == '/' || $_SERVER['REQUEST_URI'] == 'index.php') echo 'myFunction()'; ?> " style="background-color: #f5f5f5">
 	<?php
 	
 	// Call to top.php
