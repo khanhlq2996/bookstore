@@ -2,7 +2,9 @@
    if(isset($_GET['signout'])){
      unset($_SESSION['userName']);
     unset($_SESSION['level']);
+    setcookie('flag_sign_in', 'false'); // huy trang thai auto dang nhap
     header('Location: index.php');
+
    } 
    
 ?>

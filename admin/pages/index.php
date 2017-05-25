@@ -1,7 +1,7 @@
-<?php 
-ob_start();
-session_start();
+<?php ob_start();
+  session_start();
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,63 +36,69 @@ session_start();
       margin-left: 20px;
     }
   </style>
-
-
-</head>
-
-<body>
-  <?php
-  //xu li dang nhap
+<?php
+//xu li dang nhap
   $notice="";
   include('conn.php');
   if(isset($_POST['submit'])){
     $userName = $_POST['txtusername'];
     $passWord = $_POST['txtpassword'];
-    $query = "select * from adminstrator where admin_name = '$userName' and admin_password = '$passWord'";
+    $pass = md5($passWord);
+    $query = "select*from adminstrator where admin_name = '$userName' and admin_password = '$pass'";
     $result = mysql_query($query);
     $num = mysql_num_rows($result);
     if($num>0){
-      $row = mysql_fetch_assoc($result);
-      $level = $row['admin_level'];
-      $_SESSION['level'] = $level;
-      $_SESSION['userName'] = $userName;
-      header('Location: admin.php?v=dashboard');
+      setcookie('flag_sign_in', 'true');
+       $row = mysql_fetch_assoc($result);
+       $level = $row['admin_level'];
+       $_SESSION['level'] = $level;
+       $_SESSION['userName'] = $userName;
+       header('Location: admin.php?v=dashboard');
+       
+
     }
     else{
-      $notice = '<div class="alert alert-danger"><strong>Đăng nhập thất bại</strong></div>';
+
+      $notice = '<div class="alert alert-danger">
+                                <strong>Đăng nhập thất bại</strong>
+                                </div>';
     }
   }
-  ?>
-
-  <?php 
-  // luu tru trang thai dang nhap
+?>
+  
+<?php 
+// luu tru trang thai dang nhap
   if(isset($_COOKIE['flag_sign_in'])){
     if($_COOKIE['flag_sign_in'] ==='true'){
-      header('Location: templateAdmin.php');
+      header('Location: admin.php?v=dashboard');
     }
   }
-  ?>
-  <div id="main">
-   <div id="icon">
-    <img src="../uploads/images.png" width="100px" height="100px" style="margin-left: 200px">
+?>
 
-  </div>
-  <div id="login">
-    <form action="" method='POST'>
+</head>
+
+<body>
+<div id="main">
+	<div id="icon">
+		<img src="../uploads/images.png" width="100px" height="100px" style="margin-left: 200px">
+
+	</div>
+	<div id="login">
+		<form action="" method='POST'>
       <p><?php if(isset($str)) echo $str;?></p>
-      <div class="form-group">
-        <label for="email">Username:</label>
-        <input type="text" class="form-control" id="email" name="txtusername" placeholder="Enter username">
-      </div>
-      <div class="form-group">
-        <label for="pwd">Password:</label>
-        <input type="password" class="form-control" id="pwd" name="txtpassword" placeholder="Enter password">
-        <?=$notice;?>
-        <button type="submit"  class="btn btn-primary" name="submit">Đăng nhập</button>
-      </div>
-    </form>
+   		 <div class="form-group">
+      		<label for="email">Username:</label>
+     		 <input type="text" class="form-control" id="email" name="txtusername" placeholder="Enter username">
+    	</div>
+    	<div class="form-group">
+      		<label for="pwd">Password:</label>
+      		<input type="password" class="form-control" id="pwd" name="txtpassword" placeholder="Enter password">
+          <?=$notice;?>
+      		<button type="submit"  class="btn btn-primary" name="submit">Đăng nhập</button>
+    	</div>
+  		</form>
 
-  </div>
+	</div>
 
 </div>
 </body>

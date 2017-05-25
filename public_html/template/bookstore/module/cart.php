@@ -5,7 +5,7 @@ if(isset($_SESSION["cart"]))
 	//print_r($cart);
 
 	?>
-	<h3>Giỏ hàng</h3>
+	<h2>Giỏ hàng</h2>
 	<table class="table table-bordered">
 		<thead>
 			<tr>
@@ -42,7 +42,7 @@ if(isset($_SESSION["cart"]))
 
 			<tr>
 				<td colspan="6">
-					<a href="index.php" type="button" class="btn btn-primary">Tiếp tục mua hàng</a>
+					<a href="/" type="button" class="btn btn-primary">Tiếp tục mua hàng</a>
 					<button type="button" class="btn btn-danger navbar-right" style="margin-right: 0px;">Xóa hết giỏ hàng</button>
 				</td>
 			</tr>	
@@ -50,16 +50,7 @@ if(isset($_SESSION["cart"]))
 	</table>
 
 	<div class="row">
-		<div class="col-md-5">
-			<h3>Mã giảm giá</h3>
-			<div class="form-group text-center">
-				<label>Điền mã giảm giá vào ô nếu bạn có </label>
-				<input type="text" class="form-control" name="discount"  style="margin: 10px;"/>
-				<button type="button" class="btn btn-primary">Áp dụng</button>
-			</div>
-		</div>
-
-		<div class="col-md-5 col-md-offset-2 text-center">
+		<div class="col-md-8 col-md-offset-2 text-center">
 			<h3>Tổng số tiền phải thanh toán</h3>
 			<table class="table table-bordered text-left">
 				<thead>

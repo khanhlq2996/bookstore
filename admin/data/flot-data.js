@@ -54,16 +54,16 @@ $(function() {
 
     var data = [{
         label: "Series 0",
-        data: 1
+        data: 10
     }, {
         label: "Series 1",
-        data: 3
+        data: 20
     }, {
         label: "Series 2",
-        data: 9
+        data: 30
     }, {
         label: "Series 3",
-        data: 20
+        data: 40
     }];
 
     var plotObj = $.plot($("#flot-pie-chart"), data, {

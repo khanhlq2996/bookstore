@@ -45,9 +45,22 @@ class C_bookstore
 		return array('author'=>$author);
 	}
 
+	public function getOrder($order_id)
+	{
+		$m_bookstore = new M_bookstore();
+		$order = $m_bookstore->getOrder($order_id);
+		return $order;
+	}
+
+	public function bills($user_id){
+		$m_bookstore = new M_bookstore();
+		$bills = $m_bookstore->getBills($user_id);
+		return array('bill'=>$bills);
+	}
+
 	public function category($category_id){
 		$m_bookstore = new M_bookstore();
-		$category = $m_bookstore->getCategory($category_id);
+		$category = $m_bookstore->getBills($category_id);
 		return array('category'=>$category);
 	}
 	

@@ -28,7 +28,7 @@ if(isset($_SESSION["id"])){
 	$getuserinfo = $c_bookstore->getuser($_SESSION["id"]);
 	?>
 
-	<h3>Thông tin cá nhân</h3>
+	<h2>Thông tin cá nhân</h2>
 	<div class="row">
 		<form method="POST" action="">
 			<div class="col-md-6">

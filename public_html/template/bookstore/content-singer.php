@@ -50,9 +50,9 @@ if (isset($_REQUEST['addComment'])) {
 									<input size="1" id="num" name="qty" value="1" style="border: 0px; padding-left: 50px;">
 									<button type="button" class="glyphicon glyphicon-plus btn" onclick="plus()"></button>
 								</h3>
-								<button type="submit" type="submit" name="add_to_cart" class="btn btn-primary btn-lg" value="<?= $product->product_id ?>">Mua sách</button>
+								<button type="submit" name="add_to_cart" class="btn btn-primary btn-lg" value="<?= $product->product_id ?>">Mua sách</button>
 							</form>
-
+							<div style="margin-top: 20px;" class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
 							<h3>Danh mục:</h3>
 
 							<?php 

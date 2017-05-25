@@ -55,7 +55,6 @@ class M_bookstore extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
-
 	function getNewProducts()
 	{
 		$sql = "SELECT * FROM product ORDER BY product_created DESC LIMIT 0, 9";
@@ -76,6 +75,7 @@ class M_bookstore extends database
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}
+
 
 	function getOptions()
 	{
@@ -139,6 +139,20 @@ class M_bookstore extends database
 	function getComments($id)
 	{
 		$sql = "SELECT * FROM comment WHERE product_id = $id ORDER BY comment_created DESC";
+		$this->setQuery($sql);
+		return $this->loadAllRows();
+	}
+
+	function getOrder($order_id)
+	{
+		$sql = "SELECT * FROM order WHERE order_id = $order_id";
+		$this->setQuery($sql);
+		return $this->loadRow();
+	}
+
+	function getBills($id)
+	{
+		$sql = "SELECT * FROM transaction WHERE user_id = $id";
 		$this->setQuery($sql);
 		return $this->loadAllRows();
 	}

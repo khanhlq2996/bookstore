@@ -1,3 +1,62 @@
+<?php
+include('conn.php');
+if(isset($_POST['submit'])){
+    //xu li anh
+    // tao thu muc 
+    $link="";
+    $notice="";
+        $date = date('d/m/y');
+        $date = explode("/", $date);
+        $date = implode("-", $date);
+        $dirpath = '../uploads/'.$date;
+        if(!is_dir($dirpath)){
+            mkdir($dirpath);
+            chmod($dirpath, 777);
+        }
+        // xu li upload
+       if(is_dir($dirpath)){
+            if(isset($_FILES['file'])){
+                move_uploaded_file($_FILES['file']['tmp_name'],$dirpath.'/'.$_FILES['file']['name']);
+                $link = $dirpath.'/'.$_FILES['file']['name'];
+            }
+       }
+
+    //them sach
+    $tensach = $_POST['tensach'];
+    $idtacgia = $_POST['idtacgia'];
+    $description = $_POST['description'];
+    $categories = $_POST['categories'];
+    $slug = $_POST['slug'];
+    $category="";
+    foreach ($categories as $key => $value) {
+        # code...
+        $category .= $value.",";
+    }
+    $giasanpham = $_POST['giasanpham'];
+    $slview = $_POST['slview'];
+    $sllike = $_POST['sllike'];
+    $slshare = $_POST['slshare'];
+    $tag= $_POST['tag'];
+    $date = $_POST['date'];
+
+    $query ="insert into product values('null','$tensach','$slug','$idtacgia','$category','$description','$giasanpham','$link','$tag','$slview','$sllike','$slshare','$date')";
+    $result = mysql_query($query);
+
+}
+include('close.php');
+
+
+?>
+<script type="text/javascript">
+    function showValue(){
+        var x = document.getElementById('image').value;
+        var str = x.split("\\");
+        document.getElementById('disabledInput').value = str[str.length -1];
+
+
+    }
+
+</script>
 <div id="main">
 <div id="page-wrapper" id="idThemSach">
             
@@ -17,77 +76,77 @@
                         <div class="panel-body" style="margin-left: 180px;">
                             <div class="row">
                                 <div class="col-lg-6" style="width: 80%">
-                                    <form role="form">
+                                    <form role="form" action="" method="post" enctype="multipart/form-data">
                                         <div class="form-group">
                                             <label>Tên-Sách </label>
-                                            <input class="form-control">
+                                            <input class="form-control" type="text" name="tensach">
                                             <p class="help-block">Nhập vào tên sản phẩm</p>
                                         </div>
                                         <div class="form-group">
+                                            <label>Slug</label>
+                                            <input class="form-control" name="slug">
+                                        </div>
+                                        <div class="form-group">
                                             <label>ID-Tác-giả</label>
-                                            <input class="form-control">
+                                            <input class="form-control" name="idtacgia">
                                         </div>
 
-                                        <form>
+                                    
                                             <div class="form-group">
                                             <label>Avatar-link-book</label>
-                                            <input class="form-control" type="text" id="disabledInput" disabled value="">
+                                            <input class="form-control" type="text" id="disabledInput" disabled value="" name="link">
                                             </div>
                                         <div class="form-group">
                                             <label>File input</label>
-                                            <input type="file">
-                                            <input type="submit" name="upLoad" value="upload">
+                                            <input type="file" id="image" name="file" onmouseout="showValue();">
                                         </div>
-
-                                        </form>
 
                                         <div class="form-group">
                                             <label>Description-books</label>
-                                            <textarea class="form-control" rows="3"></textarea>
+                                            <textarea class="form-control" rows="3" name="description"></textarea>
                                         </div>
                                        
                                         <div class="form-group">
-                                            <label>Categories </label>
+                                
+                                            <label>Categories </label><br>
+                                            <?php
+                                            include('conn.php');
+                                            $i=1;
+                                            $result= mysql_query('select category_name from category where category_id >=1 and category_id <=8');
+                                            while ($row = mysql_fetch_assoc($result)) {
+                                                # code...
+
+
+                                            ?>
                                             <label class="checkbox-inline">
-                                                <input type="checkbox" value="1">1
+                                                <input type="checkbox" value="<?=$i?>" name="categories[]"><?=$row['category_name']?> 
                                             </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" value="2">2
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" value="3">3
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" value="4">4
-                                            </label>
-                                            <label class="checkbox-inline">
-                                                <input type="checkbox" value="5">5
-                                            </label>
+                                            <?php $i++;}?>
                                         </div>
                                          <div class="form-group">
                                             <label>Giá-Sản phẩm</label>
-                                            <input class="form-control" type="text">
+                                            <input class="form-control" type="text" name="giasanpham">
                                         </div>
                                         <div class="form-group">
 
                                          <div class="form-group">
                                             <label>Số lượng Views </label>
-                                            <input class="form-control" type="text" id="disabledInput" disabled value="0">
+                                            <input class="form-control" type="text" id="disabledInput"  value="0" name="slview">
                                         </div>
 
                                         <div class="form-group">
                                             <label>Số lượng likes </label>
-                                            <input class="form-control" type="text" id="disabledInput" disabled value="0">
+                                            <input class="form-control" type="text" id="disabledInput"  value="0" name="sllike">
                                         </div>
                                         <div class="form-group">
                                             <label>Số lượng shares</label>
-                                            <input class="form-control" type="text" id="disabledInput" disabled value="0">
+                                            <input class="form-control" type="text" id="disabledInput"  value="0" name="slshare">
                                         </div>
 
                                            
                                         <div class="form-group">
                                             <label>Thêm-Tag</label>
-                                            <select multiple class="form-control">
+                                            <select multiple class="form-control" name="tag">
                                                 <option>1</option>
                                                 <option>2</option>
                                                 <option>3</option>
@@ -97,16 +156,17 @@
                                         </div>
                                          <div class="form-group">
                                             <label>Ngày-tạo-sản-phẩm</label>
-                                            <input class="form-control" placeholder="dd/mm/yy" type="date">
+                                            <input class="form-control" placeholder="dd/mm/yy" type="date" name="date">
                                         </div>
-                                        <button type="submit" class="btn btn-default">Submit Button</button>
-                                        <button type="reset" class="btn btn-default">Reset Button</button>
+                                        <button type="submit" class="btn btn-default" name="submit">Thực hiện</button>
+                                        <button type="reset" class="btn btn-default">Reset</button>
                                     </form>
                                 </div>
                                 <!-- /.col-lg-6 (nested) -->
                               </div>
                             <!-- /.row (nested) -->
                         </div>
+                        <?php if(isset($notice)) echo $notice?>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->
@@ -226,7 +286,6 @@ include('close.php');
                             </div>
                             <!-- /.table-responsive -->
                         </div>
-                        <?php echo $notice?>
                         <!-- /.panel-body -->
                     </div>
                     <!-- /.panel -->

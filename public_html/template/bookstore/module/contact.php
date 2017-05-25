@@ -2,7 +2,7 @@
 $c_bookstore = new C_bookstore();
 $options = $c_bookstore->options();
 ?>
-<h3 class="text-center">Liên Hệ</h3>
+<h2 class="text-center">Liên Hệ</h2>
 <p class="text-center"><em>We love our fans!</em></p>
 <div class="row test">
   <div class="col-md-4">

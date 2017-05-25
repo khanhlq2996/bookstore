@@ -21,11 +21,10 @@
 		</div>
 
 		<div class="col-md-2">
-			<li class="dropdown" style="list-style: none;">
-				<a class="dropdown-toggle" data-toggle="dropdown" style="color: #4CAF50">
-					<span class="glyphicon glyphicon-shopping-cart" style="font-size: 30px;"></span>
-					<b>Giỏ hàng</b><br>
-					<b>120000 vnđ</b>
+			<li class="dropdown giohang" style="list-style: none;">
+				<a class="dropdown-toggle" data-toggle="dropdown" style="color: #4CAF50; background-color: rgb(245, 245, 245);">
+					<span class="glyphicon glyphicon-shopping-cart" style="font-size: 40px; margin-top:10px;"></span>
+					<b >Giỏ hàng</b><br>
 				</a>		
 				<ul class="dropdown-menu">
 					<li><a href="/gio-hang.html">Giỏ hàng</a></li>

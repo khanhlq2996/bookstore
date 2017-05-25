@@ -57,6 +57,7 @@ $menu = $c_bookstore->menu()['menu'];
 							echo'!</a>';
 							echo '<ul class="dropdown-menu">
 							<li><a href="thong-tin-ca-nhan.html">Thông tin cá nhân</a></li>
+							<li><a href="/don-hang.html">Đơn hàng</a></li>
 							<li><a href="/public_html/template/bookstore/module/logout.php">Đăng xuất</a></li>
 						</ul></li>';
 

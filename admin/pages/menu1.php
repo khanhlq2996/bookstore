@@ -1,5 +1,3 @@
-
-
     
                 <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
@@ -49,9 +47,9 @@
                                 <li>
                                     <a href="admin.php?v=quanliMenu">Menu</a>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <a href="admin.php?v=quanliOption">Option</a>
-                                </li>
+                                </li> -->
                                 <li>
                                     <a href="admin.php?v=quanliSlide">Slide</a>
                                 </li>

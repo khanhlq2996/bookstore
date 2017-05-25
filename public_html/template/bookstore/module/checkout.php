@@ -1,4 +1,4 @@
-<h3>Thanh toán</h3>
+<h2>Thanh toán</h2>
 <br><br>
 <h4>Thông tin thanh toán</h4>
 <div class="row">

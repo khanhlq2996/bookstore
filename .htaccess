@@ -1,7 +1,6 @@
 RewriteEngine On
 
 
-
 RewriteRule ^$ public_html/template/bookstore/index.php
 
 RewriteRule ^chuyen-muc/([a-zA-Z0-9-]+)-([0-9]+)$ public_html/template/bookstore/index.php?v=category&slug=$1&id=$2
@@ -23,3 +22,5 @@ RewriteRule ^gio-hang.html$ public_html/template/bookstore/index.php?v=page&id=4
 RewriteRule ^thanh-toan.html$ public_html/template/bookstore/index.php?v=page&id=5
 
 RewriteRule ^thong-tin-ca-nhan.html$ public_html/template/bookstore/index.php?v=page&id=6
+
+RewriteRule ^don-hang.html$ public_html/template/bookstore/index.php?v=page&id=7

@@ -77,10 +77,10 @@
 
         <?php 
         if(isset($_SESSION['userName'])){
-        include('navibar.php');
+            include('navibar.php');
         if(isset($_SESSION['level'])){
             if($_SESSION['level'] == 1){
-                include('menu1.php');
+               include('menu1.php');
             }
             else if($_SESSION['level'] == 2){
                 include('menu2.php');
@@ -109,7 +109,7 @@
                 include('quanliGiaodich.php');
             }
             else if($_GET['v'] === 'quanliCategories'){
-                include('quanliCategories.php');
+               include('quanliCategories.php');
             }
             else if($_GET['v'] === 'quanliMenu'){
                 include('quanliMenu.php');
@@ -121,6 +121,7 @@
                 include('quanliSlide.php');
             }
             else if($_GET['v'] === 'dashboard'){
+                include('dashboard.php');
 
             }
             else if($_GET['v'] === 'caidataikhoan'){

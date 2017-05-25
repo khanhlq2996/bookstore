@@ -20,7 +20,7 @@ if (!isset($_GET["id"])) {
 			</div>
 			<div class="col-md-9">
 				<!-- Title Category -->
-				<h1><?= $category->category_name?></h1> 
+				<h2><?= $category->category_name?></h2> 
 				<div class="row">
 					<div class="col-md-3">
 						<img src="<?php if($category->category_avata == null){echo '/public_html/template/bookstore/images/image-placeholder-400x300.jpg';} else echo $category->category_avata?>" style="width: 100%;">
@@ -63,17 +63,14 @@ if (!isset($_GET["id"])) {
 							?>
 							<div class="col-md-3">
 								<div class="thumbnail2">
-									<a href="/san-pham/<?= $value->slug.'-'.$value->product_id ?>.html">
-										<img src="<?php if($value->product_avata == null) {echo "/public_html/template/bookstore/images/product.jpg";} else echo $value->product_avata; ?>" alt="Lights" style="width:100%;">
-									</a>
-
+									<img src="<?php if($value->product_avata == null) {echo "/public_html/template/bookstore/images/product.jpg";} else echo $value->product_avata; ?>" alt="Lights" style="width:100%;">
 
 									<div class="caption text-center">
 										<p><b><?= $value->product_name ?></b></p>
 										<p><b><?= $value->product_price?> VNĐ</b></p>
 									</div>
 									<div class="text-center">
-										<a style="border-radius: 0px;" href="/gio-hang.html" class="btn btn-success"> Mua Sách </a>
+										<a style="border-radius: 0px;" href="/san-pham/<?= $value->slug.'-'.$value->product_id ?>.html" class="btn btn-success"> Xem Sách </a>
 									</div>
 								</div>
 

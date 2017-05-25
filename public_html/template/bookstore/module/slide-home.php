@@ -1,4 +1,4 @@
-<div class="row" style="padding-left: 20px; height: 400px;">
+<div class="row" style="padding-left: 20px; height: 390px;">
 	<div class="col-md-9 col-md-offset-3">
 		<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
 			<!-- Indicators -->
@@ -26,7 +26,7 @@
 					?>
 
 					<div class="item <?php if($i == 0) echo "active"; ?>">
-						<img src="<?php echo $data[$i]; ?>">
+						<img src="<?php echo $data[$i]; ?>" style="height: 376px;">
 					</div>
 
 					<?php

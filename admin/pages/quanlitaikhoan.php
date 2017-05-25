@@ -18,7 +18,6 @@
 
     }
     #image{
-        border: 1px solid;
         width: 150px;
         height: 150px;
         float: left;
@@ -58,9 +57,16 @@ include('close.php');
         $mkcu = $_POST['mkcu'];
         $mkmoi = $_POST['mkmoi'];
         $admin = $_SESSION['userName'];
-        $data = md5($mkmoi);
-        $query = "update adminstrator set admin_password = '$data' where admin_name = '$admin'";
-        $result = mysql_query($query);
+        if($mkcu ==="" || $mkmoi === ""){
+
+            $notice = '<div class="alert alert-info">
+                                <strong>Vui lòng Điền vào đầy đủ các field</strong>
+                                </div>'; 
+        }
+        else{
+            $data = md5($mkmoi);
+            $query = "update adminstrator set admin_password = '$data' where admin_name = '$admin'";
+            $result = mysql_query($query);
 
         if($result){
             $notice = '<div class="alert alert-success">
@@ -72,8 +78,10 @@ include('close.php');
                                 <strong>Đổi mật khẩu thất bại</strong>
                                 </div>';
         }
-
     }
+
+}
+include('close.php');
 
 ?>
 
@@ -90,6 +98,7 @@ include('close.php');
                 <div id="frame">
 
                     <div id="image">
+                    <img src="../uploads/person.png" id="image">
                     </div>
                     <div id="content">
                     <table>

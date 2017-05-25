@@ -114,8 +114,25 @@
 		}
 		?>	
 	</div>
-
-
-
 </div>
 </div>
+<div class="container" style="padding: 20px;">
+
+	<div class="row">
+		<h2>Đánh giá từ khách hàng</h2>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<blockquote>Trang web bán hàng này tuyệt vãi chưởng. Giao diện đẹp và sách cũng rất rẻ nữa. Tôi chắc chắn sẽ mua thêm một vài quyển nữa.</blockquote>
+			<cite><img src="/public_html/template/bookstore/images/customer-1.jpg">Alberto Duncan</cite>
+		</div>
+		<div class="col-md-4">
+			<blockquote>Giá sách rẻ, đáng trở thành một trong những trang web tuyệt vời nhất thế giới. Tôi đã mua cuốn 50 Sắc Thái tại đây. Rate trang web này 110/100.</blockquote>
+			<cite><img src="/public_html/template/bookstore/images/customer-2.jpg">Joana Silva</cite>
+		</div>
+		<div class="col-md-4">
+			<blockquote>Tôi đang kiếm một cuốn sách mà rất ít trang web bán. Thật tuyệt vời là tôi đã tìm thấy nó tại Unicorn Bookstore. Tiếp tục cố gắng và phát triển lên nhé!!!! Tôi tin tưởng các bạn</blockquote>
+			<cite><img src="/public_html/template/bookstore/images/customer-3.jpg">Milton Chapman</cite>
+		</div>
+	</div>
+</div> 

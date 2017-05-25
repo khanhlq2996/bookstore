@@ -15,15 +15,16 @@
         $date = date('d/m/y');
         $date = explode("/", $date);
         $date = implode("-", $date);
-        if(!is_dir($date)){
-            mkdir($date);
-            chmod($date, 777);
+        $dirpath = '../uploads/'.$date;
+        if(!is_dir($dirpath)){
+            mkdir($dirpath);
+            chmod($dirpath, 777);
         }
         // xu li upload
        if(is_dir($date)){
             if(isset($_FILES['file'])){
-                move_uploaded_file($_FILES['file']['tmp_name'], './'.$date.'/'.$_FILES['file']['name']);
-                $link = './'.$date.'/'.$_FILES['file']['name'];
+                move_uploaded_file($_FILES['file']['tmp_name'],$dirpath.'/'.$_FILES['file']['name']);
+                $link = $dirpath.'/'.$_FILES['file']['name'];
             }
        }
 
@@ -31,6 +32,7 @@
         $categoryName = $_POST['categoryName'];
         $area = $_POST['area'];
         $parent = $_POST['parent'];
+        $slug = $_POST['slug'];
 
         $sql = "select*from category where category_name = '$categoryName'";
         $result = mysql_query($sql);
@@ -41,7 +43,7 @@
                                 </div>';
         }
         else{
-            $query = "insert into category values('null','$categoryName','$area','$link','$parent')";
+            $query = "insert into category values('null','$categoryName','$slug','$area','$link','$parent')";
             $result = mysql_query($query);
             if($result>0){
                 $notice = '<div class="alert alert-success">
@@ -84,6 +86,12 @@
                                             <input class="form-control" name="categoryName">
                                             <p class="help-block">Nhập vào tên Category tag</p>
                                         </div>
+                                        <div class="form-group">
+                                            <label>Slug </label>
+                                            <input class="form-control" name="slug">
+                
+                                        </div>
+                                      
                                       
                                             <div class="form-group">
                                             <label>Avatar-link-Category</label>

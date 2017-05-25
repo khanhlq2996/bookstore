@@ -32,16 +32,17 @@
         $date = date('d/m/y');
         $date = explode("/", $date);
         $date = implode("-", $date);
-        if(!is_dir($date)){
-            mkdir($date);
-            chmod($date, 777);
+        $dirpath = '../uploads/'.$date;
+        if(!is_dir($dirpath)){
+            mkdir($dirpath);
+            chmod($dirpath, 777);
         }
         // xu li upload
-        if(is_dir($date)){
+        if(is_dir($dirpath)){
             if(isset($_FILES['file'])){   
                     for($i = 0; $i<$imageNb;$i++){
-                        $urlSlide .= './'.$date.'/'.$_FILES['file']['name'][$i].','; 
-                        move_uploaded_file($_FILES['file']['tmp_name'][$i], './uploads/'.$date.'/'.$_FILES['file']['name'][$i]);
+                        $urlSlide .= $dirpath.'/'.$_FILES['file']['name'][$i].','; 
+                        move_uploaded_file($_FILES['file']['tmp_name'][$i],$dirpath.'/'.$_FILES['file']['name'][$i]);
                         // ghep vao thanh xau s,dad,ada
                     }
             
